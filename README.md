@@ -1,10 +1,6 @@
 # TicketApprentice
 
-This is the backend for [Ticket Apprentice](https://ix.cs.uoregon.edu/~cpalk/ticketapprentice).
+This is the backend for [Ticket Apprentice](https://ix.cs.uoregon.edu/~cpalk/ticketapprentice). Go explore!
 
-A **simulated** service for managing ticket sales and viewing backend analytics. To allow exploration of the site, steps such as *User Accounts* and *Personal Info* are never collected.
-
-
-
-The site utilizes my MySQL Database managing records of ticket sales. 
-
+### Info ###
+This is a **simulated** service for ticket sales and the resulting ticket sale analytics. The site utilizes my MySQL Database managing records of ticket sales. 
