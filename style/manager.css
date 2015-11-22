@@ -1,0 +1,44 @@
+body {
+    background-color: #2C3E50;
+    padding: 0;
+}
+
+#menu_container {
+    position: fixed;
+    top:0;
+    left: 0;
+    right: 0;
+
+
+    height: 50px;
+    background-color: #2C3E50;
+
+    text-align: center;
+    line-height: 50px;
+}
+
+#menu_container a {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#body_container {
+
+    margin: 0 auto;
+    padding-top: 30px;
+
+}
+
+#middle_container {
+    width: 800px;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #ECF0F1;
+}
+
+#all-events_module {
+    background-color:green;
+}
+
+

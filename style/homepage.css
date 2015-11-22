@@ -1,0 +1,55 @@
+
+
+a {
+    display: block;
+    text-decoration: none;
+    color: #EEE;
+    padding: 20px;
+    margin: auto;
+    width: 50%;
+}
+
+a:hover {
+    color: #2980B9;
+}
+
+body {
+
+}
+
+
+.panel_title_wrapper {
+}
+
+
+#customer_side_wrapper, #manager_side_wrapper {
+    top:0;
+    bottom:0;
+    position: fixed;
+
+    text-align: center;
+    padding-top: 100px;
+}
+
+
+#customer_side_wrapper {
+    left: 0;
+    right: 50%;
+
+}
+
+#manager_side_wrapper {
+    right: 0;
+    left: 50%;
+
+}
+
+#customer_panel_wrapper, #manager_panel_wrapper {
+    font-size: 42px;
+    background-color: #EEE;
+    border-bottom: 2px solid #555;
+
+    background-color: #3498DB;
+}
+
+
