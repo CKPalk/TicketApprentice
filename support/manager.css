@@ -24,17 +24,19 @@ body {
 
 #body_container {
 
+    height: 100%;
+    background-color: #ECF0F1;
+
     margin: 0 auto;
-    padding-top: 30px;
+
 
 }
 
 #middle_container {
-    width: 800px;
+    width: 1000px;
     margin: 0 auto;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background-color: #ECF0F1;
+    padding-top: 100px;
+    padding-bottom: 100px;
 }
 
 #all-events_module {

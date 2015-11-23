@@ -38,8 +38,10 @@ html {
 .module-title {
     padding: 15px;
     background-color: #3498DB;
+    text-transform: uppercase;
+    color: #FFF;
 }
 
 .module-body {
-    padding: 15px;
+    padding: 25px;
 }
