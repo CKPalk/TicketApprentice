@@ -99,32 +99,27 @@ $preparedAddressQuery = "
                                 if ( mysqli_stmt_execute( $stmt ) ) {
                                     print "Venue insert successful<br>";
                                 }
-                                else { ?>
-                                    <div class="error-banner">Venue Insert Failed</div>
-                          <?php }
+                                else { 
+                                    ?> <div class="error-banner">Venue Insert Failed</div> <?php 
+                                }
                                 mysqli_stmt_close( $stmt );
                             }
-                            else { ?>
-                                <div class="error-banner">Venue Prepared Statement Failed</div>
-                      <?php }
+                            else { 
+                                ?> <div class="error-banner">Venue Prepared Statement Failed</div> <?php 
+                            }
                         }
-                        else { ?>
-                            <div class="error-banner">Address Query Failed</div>
-                  <?php }
+                        else { 
+                            ?> <div class="error-banner">Address Query Failed</div> <?php 
+                        }
+                    }
+                    else {
+                        ?> <div class="error-banner">Address Insert Failed</div> <?php
                     }
                 }
-            else { 
-                ?> <div class="error-banner">Address Prepared Statement Failed</div> <?php 
+                else {
+                    ?> <div class="error-banner">Adderess Prepared Statment Failed</div> <?php
                 }
-            }
-            else { 
-                ?> <div class="error-banner">Address Insert Failed</div> <?php 
-            }
-        }
-        else {
-            print "Prepared statement failed<br>";
-        }
-?>
+                ?>
             </div>
         </div>
     </div>
