@@ -104,12 +104,16 @@ $preparedAddressQuery = "
                                 print "<div class='stmt-success'>Venue Insert Prepared Statement Successful</div>";
                             }
                             else { print "Venue Insert Prepared Statement Failed<br>"; }
+                            print "<div class='stmt-success'>Address Query Execution Success</div>";
                         }
                         else { print "Address Query Execution Failed<br>"; }
+                        print "<div class='stmt-success'>Address Query Prepared Statement Success</div>";
                     }
                     else { print "Address Query Prepared Statement Failed<br>"; }
+                    print "<div class='stmt-success'>Address Insert Execution Success</div>";
                 }
                 else { print "Address Insert Execution Failed<br>"; }
+                print "<div class='stmt-success'>Address Insert Prepared Statement Success</div>";
             }
             else { print "Address Insert Prepared Statement Failed<br>"; }
             ?>
