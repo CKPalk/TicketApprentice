@@ -63,6 +63,7 @@ $preparedAddressQuery = "
 <div id="body_container">
 <div id="middle_container">
     <div class="module">
+        <div class='stmt_success' id='test'>Venue Insert Successful</div>
         <div class="module-title">New Venue Information</div>
         <div class="module-body">
             <?php
