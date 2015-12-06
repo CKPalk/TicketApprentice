@@ -98,7 +98,7 @@ $preparedAddressQuery = "
                                     $address_id
                                 );
                                 if ( mysqli_stmt_execute( $stmt ) ) {
-                                    echo "<div class='stmt_success' id='test'>Venue Insert Successful</div>";
+                                    ?> <div class='stmt_success' id='test'>Venue Insert Successful</div> <?php
                                 }
                                 else { echo "<div class='stmt_failed'>Venue Insert Execution Failed</div>"; }
                                 echo "<div class='stmt_success'>Venue Insert Prepared Statement Successful</div>";
