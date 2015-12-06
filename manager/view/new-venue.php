@@ -78,48 +78,32 @@ $preparedAddressQuery = "
 
                 if ( mysqli_stmt_execute( $stmt ) ) {
                     mysqli_stmt_close( $stmt );
-                        mysqli_stmt_bind_param( $stmt, 'ssssis',
-                            $address_line_1, 
-                            $address_line_2,
-                            $city,
-                            $state,
-                            $zipcode,
-                            $country
-                        );
-                        if ( mysqli_stmt_execute( $stmt ) ) {
-                            mysqli_stmt_bind_result( $stmt, $address_id );
-                            mysqli_stmt_fetch( $stmt );
-                            mysqli_stmt_close( $stmt );
-                            if( $stmt = mysqli_prepare( $connection, $preparedVenueInsert ) ) {
-                                mysqli_stmt_bind_param( $stmt, 'sii',
-                                    $venue_name,
-                                    $venue_seat_capacity,
-                                    $address_id
-                                );
-                                if ( mysqli_stmt_execute( $stmt ) ) {
-                                    print "Venue insert successful<br>";
-                                }
-                                else { 
-                                    ?> <div class="error-banner">Venue Insert Failed</div> <?php 
-                                }
-                                mysqli_stmt_close( $stmt );
-                            }
-                            else { 
-                                ?> <div class="error-banner">Venue Prepared Statement Failed</div> <?php 
+                    mysqli_stmt_bind_param( $stmt, 'ssssis',
+                        $address_line_1, 
+                        $address_line_2,
+                        $city,
+                        $state,
+                        $zipcode,
+                        $country
+                    );
+                    if ( mysqli_stmt_execute( $stmt ) ) {
+                        mysqli_stmt_bind_result( $stmt, $address_id );
+                        mysqli_stmt_fetch( $stmt );
+                        mysqli_stmt_close( $stmt );
+                        if( $stmt = mysqli_prepare( $connection, $preparedVenueInsert ) ) {
+                            mysqli_stmt_bind_param( $stmt, 'sii',
+                                $venue_name,
+                                $venue_seat_capacity,
+                                $address_id
+                            );
+                            if ( mysqli_stmt_execute( $stmt ) ) {
+                                print "Venue insert successful<br>";
                             }
                         }
-                        else { 
-                            ?> <div class="error-banner">Address Query Failed</div> <?php 
-                        }
-                    }
-                    else {
-                        ?> <div class="error-banner">Address Insert Failed</div> <?php
                     }
                 }
-                else {
-                    ?> <div class="error-banner">Adderess Prepared Statment Failed</div> <?php
-                }
-                ?>
+            }
+            ?>
             </div>
         </div>
     </div>
