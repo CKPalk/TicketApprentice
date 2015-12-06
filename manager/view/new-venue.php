@@ -98,24 +98,24 @@ $preparedAddressQuery = "
                                     $address_id
                                 );
                                 if ( mysqli_stmt_execute( $stmt ) ) {
-                                    print "<div class='stmt_success'>Venue Insert Successful</div>";
+                                    echo "<div class='stmt_success' id='test'>Venue Insert Successful</div>";
                                 }
-                                else { print "<div class='stmt_failed'>Venue Insert Execution Failed</div>"; }
-                                print "<div class='stmt_success'>Venue Insert Prepared Statement Successful</div>";
+                                else { echo "<div class='stmt_failed'>Venue Insert Execution Failed</div>"; }
+                                echo "<div class='stmt_success'>Venue Insert Prepared Statement Successful</div>";
                             }
-                            else { print "Venue Insert Prepared Statement Failed<br>"; }
-                            print "<div class='stmt-success'>Address Query Execution Success</div>";
+                            else { echo "Venue Insert Prepared Statement Failed<br>"; }
+                            echo "<div class='stmt-success'>Address Query Execution Success</div>";
                         }
-                        else { print "Address Query Execution Failed<br>"; }
-                        print "<div class='stmt-success'>Address Query Prepared Statement Success</div>";
+                        else { echo "Address Query Execution Failed<br>"; }
+                        echo "<div class='stmt-success'>Address Query Prepared Statement Success</div>";
                     }
-                    else { print "Address Query Prepared Statement Failed<br>"; }
-                    print "<div class='stmt-success'>Address Insert Execution Success</div>";
+                    else { echo "Address Query Prepared Statement Failed<br>"; }
+                    echo "<div class='stmt-success'>Address Insert Execution Success</div>";
                 }
-                else { print "Address Insert Execution Failed<br>"; }
-                print "<div class='stmt-success'>Address Insert Prepared Statement Success</div>";
+                else { echo "Address Insert Execution Failed<br>"; }
+                echo "<div class='stmt-success'>Address Insert Prepared Statement Success</div>";
             }
-            else { print "Address Insert Prepared Statement Failed<br>"; }
+            else { echo "Address Insert Prepared Statement Failed<br>"; }
             ?>
             </div>
         </div>
