@@ -112,6 +112,11 @@ input[type="submit"] {
     color: #FFCB1A;
 }
 
-
+.stmt-success {
+    width: 100%;
+    border-radius: 6px;
+    background-color: #0fDf19;
+    color: #FFF;
+}
 
 
