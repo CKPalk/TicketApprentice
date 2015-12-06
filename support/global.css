@@ -1,47 +1,117 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:700,400);
 
 html, body {
-
     padding: 0;
     margin: 0;
-
     background-color: #ECF0F1;
-
 }
 
 
 html {
-
-    font-family: 'Montserrat', sans-serif;
-    /* font-family: 'Helvetica Neue', Helvetica Arial, sans-serif; */
+    /*font-family: 'Montserrat', sans-serif;*/
+    font-family: 'Helvetica Neue', Helvetica Arial, sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 300;
-
 }
 
 .big_header {
     font-size: 40px;
 }
 
-.module {
+.module, .form-module {
     width: 80%;
-
-    margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 30px;
-
     background-color: #FFF;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.form-module {
+    width: 50%;
 }
 
 .module-title {
     padding: 15px;
-    background-color: #3498DB;
-    text-transform: uppercase;
+    background-color: #24495E;
+    text-transform: capitalize;
+    font-weight: 500;
+    letter-spacing: 1px;
     color: #FFF;
+    -moz-border-top-left-radius: 8px;
+    -moz-border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .module-body {
-    padding: 25px;
+    line-height: 150%;
+    padding: 30px 25px 25px 30px;
 }
+
+.module-body a {
+    padding: 10px 24px 10px 24px;
+    background-color: #16A085;
+    text-decoration: none;
+    font-size: 18px;
+    color: #EEE;
+    border-radius: 6px;
+    margin: 10px;
+}
+
+.module-body a:hover {
+    transition: background-color 0.25s ease-in;
+    background-color: #1ABC9C;
+}
+
+.module-body a:active {
+    background-color: #E74C3C;
+}
+
+form {
+    text-align: left;
+}
+
+input {
+    padding: 10px;
+    border: none;
+    font-size: 16px;
+
+    font-family: 'Helvetica Neue', Helvetica Arial, sans-serif; 
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+}
+
+input[type="text"], input[type="date"], input[type="number"] {
+    width: 100%;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #7F8C8D;
+}
+
+
+input[type="submit"] {
+    background-color: #3498DB;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #FFF !important;
+
+    margin: 15px;
+}
+
+.add-form input[type="submit"] {
+    background-color: #27AE60;
+}
+
+.add-form input {
+    color: #0FDF19;
+}
+
+.edit-form input {
+    color: #FFCB1A;
+}
+
+
+
+

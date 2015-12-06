@@ -1,0 +1,1 @@
+We need to put the customer_id as a foreign key into addresses. This is so that on a deletion of a Customer we also want the dependency (ON DELETE CASCADE) to delete the address.
