@@ -1,0 +1,125 @@
+
+<?php
+// Make connection to server
+include( '../../support/connectionCredentials.php' );
+
+$connection = mysqli_connect
+    ( $server, $username, $password, $database, $port );
+
+if ( !$connection ) header( 'Location: ~/public_html/TicketApprentice/support/connection-error.html' );
+
+$venue_name        = $_POST["venue_name"];
+$venue_seat_capacity = $_POST["venue_seat_capacity"];
+$address_line_1    = $_POST["address_line_1"];
+$address_line_2    = $_POST["address_line_2"];
+$city              = $_POST["city"];
+$state             = $_POST["state"];
+$zipcode           = $_POST["zipcode"];
+$country           = $_POST["country"];
+
+
+
+// Insert into Venues table here
+$preparedVenueInsert = "
+    INSERT INTO Venues (
+        venue_name,
+        venue_seat_capacity,
+        address_id
+    ) VALUES ( ?, ?, ? );
+";
+
+$preparedAddressInsert = "
+    INSERT INTO Addresses (
+        address_line_1,
+        address_line_2,
+        city,
+        state,
+        zipcode,
+        country
+    ) VALUES ( ?, ?, ?, ?, ?, ? );
+";
+
+$preparedAddressQuery = "
+    SELECT address_id FROM Addresses WHERE 
+        address_line_1=? AND 
+        address_line_2=? AND
+        city=? AND
+        state=? AND
+        zipcode=? AND
+        country=?
+    ;
+";
+
+$preparedVenueQuery = "
+    SELECT venue_id FROM Venues WHERE
+        venue_name=? AND venue_seat_capacity=? AND address_id=?
+    ;
+";
+
+?>
+
+<html>
+<head>
+    <title>TA: New Venue</title>
+    <link rel="stylesheet" type="text/css" href="../../support/global.css?v=<?=time();?>">
+    <link rel="stylesheet" type="text/css" href="../../support/manager.css?v=<?=time();?>">
+</head>
+<body>
+<div id="body_container">
+<div id="middle_container">
+    <div class="module">
+        <div class="module-title">Add New Venue</div>
+        <div class="module-body">
+        <div style="text-align: center; width: 100%;">
+            <?php
+            if ( $stmt = mysqli_prepare( $connection, $preparedAddressInsert ) ) {
+                mysqli_stmt_bind_param( $stmt, 'ssssis', $address_line_1, $address_line_2, $city, $state, $zipcode, $country); 
+                if ( mysqli_stmt_execute( $stmt ) ) {
+                echo "<div class='stmt-success'>1. Address Prepared Statement Passed</div>";
+                    mysqli_stmt_close( $stmt );
+                    if ( $stmt = mysqli_prepare( $connection, $preparedAddressQuery ) ) {
+                    echo "<div class='stmt-success'>2. Address Inserted</div>";
+                        mysqli_stmt_bind_param( $stmt, 'ssssis', $address_line_1, $address_line_2, $city, $state, $zipcode, $country);
+                        if ( mysqli_stmt_execute( $stmt ) ) {
+                            echo "<div class='stmt-success'>3. Address Entry Found</div>";
+                            mysqli_stmt_bind_result( $stmt, $address_id );
+                            mysqli_stmt_fetch( $stmt );
+                            mysqli_stmt_close( $stmt );
+                            if( $stmt = mysqli_prepare( $connection, $preparedVenueInsert ) ) {
+                                echo "<div class='stmt-success'>4. Venue Prepared Statement Passed</div>";
+                                mysqli_stmt_bind_param( $stmt, 'sii', $venue_name, $venue_seat_capacity, $address_id);
+                                if ( mysqli_stmt_execute( $stmt ) ) {
+                                    echo "<div class='stmt-success'>5. Venue Inserted</div>";
+                                    mysqli_stmt_close( $stmt );
+                                    if ( $stmt = mysqli_prepare( $connection, $preparedVenueQuery ) ) {
+                                        mysqli_stmt_bind_param( $stmt, 'sii', $venue_name, $venue_seat_capacity, $address_id );
+                                        if ( mysqli_stmt_execute( $stmt ) ) {
+                                            mysqli_stmt_bind_result( $stmt, $venue_id );
+                                            if ( !mysqli_stmt_fetch( $stmt ) ) {
+                                                print "<div class='stmt_failed'>Venue Query Execution Failed</div>";
+                                            }
+                                        }
+                                    }
+                                }
+                                else { echo "<div class='stmt_failed'>Venue Insert Execution Failed</div>"; }
+                            }
+                            else { echo "<div class='stmt-failed'>Venue Prepared Statement Passed</div>"; }
+                        }
+                        else { echo "<div class='stmt-failed'>Address Query Execution Failed</div>"; }
+                    }
+                }
+                else { echo "<div class='stmt-failed'>Address Insert Execution Failed</div>"; }
+            }
+            else { echo "<div class='stmt-failed'>Address Insert Prepared Statement Failed</div>"; }
+            ?>
+
+            </br>
+            </br>
+            <a id="details-link" href="../view/venue-details.php?venue_id=<?php echo $venue_id; ?>">View your new venues detailed view</a>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

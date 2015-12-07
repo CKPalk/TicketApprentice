@@ -32,6 +32,15 @@ html {
     width: 50%;
 }
 
+.stmt-success {
+    display: block;
+    text-align: center;
+    width: 100%;
+    border-radius: 6px;
+    background-color: #0fDf19 !important;
+    color: #FFF;
+}
+
 .module-title {
     padding: 15px;
     background-color: #24495E;
@@ -111,14 +120,4 @@ input[type="submit"] {
 .edit-form input {
     color: #FFCB1A;
 }
-
-.stmt_success {
-    text-align: center;
-    width: 100%;
-    border-radius: 6px;
-    background-color: #0fDf19;
-    color: #FFF;
-}
-
-#test { background-color: red; }
 

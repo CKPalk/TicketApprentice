@@ -1,3 +1,3 @@
 git add -A .
-git commit -m "Quick push for quick changes, no major change"
+git commit -m "$1"
 git push

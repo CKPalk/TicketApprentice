@@ -11,7 +11,7 @@
         <div class="form-module">
             <div class="module-title">New Venue Form</div>
             <div class="module-body" style="text-align: center">
-                <form class="add-form" action="../view/new-venue.php" method="post">
+                <form class="add-form" action="new-venue.php" method="post">
                     Venue Name:
                     <input type="text" name="venue_name" placeholder="Matthew Knight Arena">
 

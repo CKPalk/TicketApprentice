@@ -42,5 +42,7 @@ body {
     background-color:green;
 }
 
+.stmt-success {
+    background-color: blue;
+}
 
-#test { background-color: red; }

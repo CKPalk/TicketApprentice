@@ -11,7 +11,7 @@
         <div class="form-module">
             <div class="module-title">New Performer Form</div>
             <div class="module-body" style="text-align: center">
-                <form class="add-form" action="../view/new-performer.php" method="post">
+                <form class="add-form" action="new-performer.php" method="post">
                     First Name:
                     <input type="text" name="firstname">
 

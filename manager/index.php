@@ -12,8 +12,8 @@ if ( !$connection ) header( 'Location: ../support/connection-error.html' );
 <html>
 <head>
     <title>Manager Home</title>
-    <link rel="stylesheet" type="text/css" href="../support/global.css">
-    <link rel="stylesheet" type="text/css" href="../support/manager.css">
+    <link rel="stylesheet" type="text/css" href="../support/global.css?v=<?=time();?>">
+    <link rel="stylesheet" type="text/css" href="../support/manager.css?v=<?=time();?>">
 </head>
 <body><!--
     <div id="menu_container">
@@ -34,7 +34,7 @@ if ( !$connection ) header( 'Location: ../support/connection-error.html' );
             </div>
         </div>
         <div class="module">
-            <div class="module-title">Event Detailed View</div>
+            <div class="module-title">All Events</div>
             <div class="module-body">
             <?php
                 $allEventsQuery = "SELECT event_id, event_name FROM Events";
@@ -45,11 +45,33 @@ if ( !$connection ) header( 'Location: ../support/connection-error.html' );
                     while ( mysqli_stmt_fetch( $stmt ) ) {
                         echo "<li>" . $event_id . ": " . $event_name . "</li>";
                     }
+
+                    mysqli_stmt_close( $stmt );
                 }
                 else {
                     echo "Failed to find events.";
                 }
+            ?>
+            </div>
+        </div>
+        <div class="module">
+            <div class="module-title">All Venues</div>
+            <div class="module-body">
+            <?php
+                $allVenuesQuery = "SELECT venue_id, venue_name FROM Venues";
+                if ( $stmt = mysqli_prepare( $connection, $allVenuesQuery ) ) {
+                    mysqli_stmt_execute( $stmt );
+                    mysqli_stmt_bind_result( $stmt, $venue_id, $venue_name );
 
+                    while ( mysqli_stmt_fetch( $stmt ) ) {
+                        echo "<a class='list-link' href='view/venue-details.php?venue_id=" . $venue_id . "'>" . $venue_name . "</a>";
+                    }
+
+                    mysqli_stmt_close( $stmt );
+                }
+                else {
+                    echo "Failed to find venues.";
+                }
             ?>
             </div>
         </div>
