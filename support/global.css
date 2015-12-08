@@ -15,8 +15,52 @@ html {
     font-weight: 300;
 }
 
+#header-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    width: 100%;
+    background-color: #FFF;
+    box-shadow: rgba(0, 0, 0, 0) 0px 2px 2px 0px, rgba(0, 0, 0, 0.0901961) 0px 2px 3px 0px;
+}
+
+#header-container {
+    width: 600px;
+    height: 80px;
+    text-align: center;
+    margin: auto;
+    line-height: 80px;
+}
+
+#header-bar a {
+    display: inline-block;
+    height: 80px;
+    color: #34495e;
+    padding: 0px 25px 0px 25px;
+    margin: 0px 45px 0px 45px;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+#manager-home-header {
+}
+
+#customer-home-header {
+}
+
+
+
 .big_header {
     font-size: 40px;
+}
+
+#middle_container {
+    width: 1000px;
+    margin: 0 auto;
+    padding-top: 140px;
+    padding-bottom: 100px;
 }
 
 .module, .form-module {
@@ -30,15 +74,6 @@ html {
 
 .form-module {
     width: 50%;
-}
-
-.stmt-success {
-    display: block;
-    text-align: center;
-    width: 100%;
-    border-radius: 6px;
-    background-color: #0fDf19 !important;
-    color: #FFF;
 }
 
 .module-title {
@@ -59,6 +94,15 @@ html {
     padding: 30px 25px 25px 30px;
 }
 
+.centered {
+    text-align: center;
+}
+
+.module-body select {
+    font-size: 18px;
+    color: #7F8C8D;
+}
+
 .module-body a {
     padding: 10px 24px 10px 24px;
     background-color: #16A085;
@@ -66,7 +110,8 @@ html {
     font-size: 18px;
     color: #EEE;
     border-radius: 6px;
-    margin: 10px;
+    margin: 8px;
+    display: inline-block;
 }
 
 .module-body a:hover {
@@ -77,6 +122,34 @@ html {
 .module-body a:active {
     background-color: #E74C3C;
 }
+
+a.add-link {
+    margin: 0px;
+    padding: 0px;
+    background-color: inherit;
+}
+
+a.add-link img {
+    height: 18px;
+    width: 18px;
+}
+
+a.list-link {
+    display: block;
+    background-color: #2980B9;
+}
+
+a.list-link:hover {
+    background-color: #3498db;
+}
+
+
+#details-link {
+    margin-top: 30px !important;
+    margin-bottom: 10px !important;
+    display: inline-block;
+}
+
 
 form {
     text-align: left;
@@ -93,7 +166,7 @@ input {
     font-weight: 300;
 }
 
-input[type="text"], input[type="date"], input[type="number"] {
+input[type="text"], input[type="date"], input[type="number"], input[type="email"], input[type="date"], input[type="time"], select {
     width: 100%;
     margin-bottom: 20px;
     border-bottom: 1px solid #7F8C8D;
@@ -119,5 +192,27 @@ input[type="submit"] {
 
 .edit-form input {
     color: #FFCB1A;
+}
+
+.stmt-success {
+    margin: 8px;
+    padding: 8px;
+    display: inline-block;
+    text-align: center;
+    line-height: 100%;
+    border-radius: 6px;
+    background-color: #2ecc71;
+    color: #FFF;
+}
+
+.stmt-failed {
+    margin: 8px;
+    padding: 8px;
+    display: inline-block;
+    text-align: center;
+    line-height: 100%;
+    border-radius: 6px;
+    background-color: #e74c3c;
+    color: #FFF;
 }
 

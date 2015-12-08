@@ -9,27 +9,27 @@ $connection = mysqli_connect
 if ( !$connection ) header( 'Location: ~/public_html/TicketApprentice/support/connection-error.html' );
 
 
-$firstname  = $_POST["firstname"];
-$lastname   = $_POST["lastname"];
-$dob        = $_POST["dob"];
-$gender     = $_POST["sex"];
+$event_name                 = $_POST["event_name"];
+$event_start_date           = $_POST["event_start_date"] . " " . $_POST["event_start_time"];
+$sale_date                  = $_POST["sale_date"];
+$venue_id                   = $_POST["venue_id"];
+$performer_id               = $_POST["performer_id"];
+$event_category_code        = $_POST["event_category_code"];
+
+$performer_id = 1;
 
 
-// Insert into Performers table here
-$preparedPerformerInsert = "
-    INSERT INTO Performers (
-        first_name,
-        last_name,
-        date_of_birth,
-        gender
-    ) VALUES ( ?, ?, ?, ? );
+// Insert into Events table here
+$preparedEventInsert = "
+    INSERT INTO Events ( event_name, event_start_date, ticket_start_sale_date, venue_id, performer_id, event_category_code ) 
+        VALUES ( ?, ?, ?, ?, ?, ? );
 ";
 
 ?>
 
 <html>
 <head>
-    <title>TA: New Performer</title>
+    <title>TA: New Event</title>
     <link rel="stylesheet" type="text/css" href="../../support/global.css?v=<?=time();?>">
     <link rel="stylesheet" type="text/css" href="../../support/manager.css?v=<?=time();?>">
 </head>
@@ -45,20 +45,19 @@ $preparedPerformerInsert = "
 <div id="body_container">
 <div id="middle_container">
     <div class="module">
-        <div class="module-title">New Performer/Group Information</div>
+        <div class="module-title">New Event Information</div>
         <div class="module-body centered">
             <?php
-            if( $stmt = mysqli_prepare( $connection, $preparedPerformerInsert ) ) {
-                print "<div class='stmt-success'>Performer Prepared Statement Passed</div>";
-                mysqli_stmt_bind_param( $stmt, 'ssss', $firstname, $lastname, $dob, $gender );
-
+            mysqli_stmt_close( $stmt );
+            if( $stmt = mysqli_prepare( $connection, $preparedEventInsert ) ) {
+                print "<div class='stmt-success'>Event Prepared Statement Passed</div>";
+                mysqli_stmt_bind_param( $stmt, 'sssiii', $event_name, $event_start_date, $sale_date, $venue_id, $performer_id, $event_category_code );
                 if ( mysqli_stmt_execute( $stmt ) ) {
-                    print "<div class='stmt-success'>Performer Added</div>";
+                    print "<div class='stmt-success'>Event Added</div>";
                 }
                 else {
-                    print "<div class='stmt-failed'>Performer Insert Execution Failed</div>";
+                    print "<div class='stmt-failed'>Event Insert Execution Failed</div>";
                 }
-
                 mysqli_stmt_close( $stmt );
             }
             else {
@@ -67,7 +66,7 @@ $preparedPerformerInsert = "
             ?>
             </br>
             </br>
-            <a id="details-link" href="../view/performer-details.php">View New Performer/Group Details</a>
+            <a id="details-link" href="../view/event-details.php">View New Event Details</a>
             </div>
         </div>
     </div>

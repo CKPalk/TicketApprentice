@@ -8,59 +8,44 @@ $connection = mysqli_connect
 
 if ( !$connection ) header( 'Location: ~/public_html/TicketApprentice/support/connection-error.html' );
 
-$venue_name        = $_POST["venue_name"];
-$venue_seat_capacity = $_POST["venue_seat_capacity"];
-$address_line_1    = $_POST["address_line_1"];
-$address_line_2    = $_POST["address_line_2"];
-$city              = $_POST["city"];
-$state             = $_POST["state"];
-$zipcode           = $_POST["zipcode"];
-$country           = $_POST["country"];
+$first_name     = $_POST["firstname"];
+$last_name      = $_POST["lastname"];
+$email          = $_POST["email"];
+$address_line_1 = $_POST["address_line_1"];
+$address_line_2 = $_POST["address_line_2"];
+$city           = $_POST["city"];
+$state          = $_POST["state"];
+$zipcode        = $_POST["zipcode"];
+$country        = $_POST["country"];
 
 
 
-// Insert into Venues table here
-$preparedVenueInsert = "
-    INSERT INTO Venues (
-        venue_name,
-        venue_seat_capacity,
-        address_id
-    ) VALUES ( ?, ?, ? );
+// Insert into Customers table here
+$preparedCustomerInsert = "
+    INSERT INTO Customers ( first_name, last_name, email, address_id ) 
+        VALUES ( ?, ?, ?, ? );
 ";
 
 $preparedAddressInsert = "
-    INSERT INTO Addresses (
-        address_line_1,
-        address_line_2,
-        city,
-        state,
-        zipcode,
-        country
-    ) VALUES ( ?, ?, ?, ?, ?, ? );
+    INSERT INTO Addresses ( address_line_1, address_line_2, city, state, zipcode, country ) 
+        VALUES ( ?, ?, ?, ?, ?, ? );
 ";
 
 $preparedAddressQuery = "
-    SELECT address_id FROM Addresses WHERE 
-        address_line_1=? AND 
-        address_line_2=? AND
-        city=? AND
-        state=? AND
-        zipcode=? AND
-        country=?
-    ;
+    SELECT address_id FROM Addresses 
+        WHERE address_line_1=? AND address_line_2=? AND city=? AND state=? AND zipcode=? AND country=?;
 ";
 
-$preparedVenueQuery = "
-    SELECT venue_id FROM Venues WHERE
-        venue_name=? AND venue_seat_capacity=? AND address_id=?
-    ;
+$preparedCustomerQuery = "
+    SELECT customer_id FROM Customers
+        WHERE first_name=? AND last_name=? AND email=? AND address_id=?;
 ";
 
 ?>
 
 <html>
 <head>
-    <title>TA: New Venue</title>
+    <title>TA: New Customer</title>
     <link rel="stylesheet" type="text/css" href="../../support/global.css?v=<?=time();?>">
     <link rel="stylesheet" type="text/css" href="../../support/manager.css?v=<?=time();?>">
 </head>
@@ -76,7 +61,7 @@ $preparedVenueQuery = "
 <div id="body_container">
 <div id="middle_container">
     <div class="module">
-        <div class="module-title">Add New Venue</div>
+        <div class="module-title">Add New Customer</div>
         <div class="module-body">
         <div style="text-align: center; width: 100%;">
             <?php
@@ -93,25 +78,25 @@ $preparedVenueQuery = "
                             mysqli_stmt_bind_result( $stmt, $address_id );
                             mysqli_stmt_fetch( $stmt );
                             mysqli_stmt_close( $stmt );
-                            if( $stmt = mysqli_prepare( $connection, $preparedVenueInsert ) ) {
-                                echo "<div class='stmt-success'>4. Venue Prepared Statement Passed</div>";
-                                mysqli_stmt_bind_param( $stmt, 'sii', $venue_name, $venue_seat_capacity, $address_id);
+                            if( $stmt = mysqli_prepare( $connection, $preparedCustomerInsert ) ) {
+                                echo "<div class='stmt-success'>4. Customer Prepared Statement Passed</div>";
+                                mysqli_stmt_bind_param( $stmt, 'sssi', $first_name, $last_name, $email, $address_id);
                                 if ( mysqli_stmt_execute( $stmt ) ) {
-                                    echo "<div class='stmt-success'>5. Venue Inserted</div>";
+                                    echo "<div class='stmt-success'>5. Customer Inserted</div>";
                                     mysqli_stmt_close( $stmt );
-                                    if ( $stmt = mysqli_prepare( $connection, $preparedVenueQuery ) ) {
-                                        mysqli_stmt_bind_param( $stmt, 'sii', $venue_name, $venue_seat_capacity, $address_id );
+                                    if ( $stmt = mysqli_prepare( $connection, $preparedCustomerQuery ) ) {
+                                        mysqli_stmt_bind_param( $stmt, 'sssi', $first_name, $last_name, $email, $address_id );
                                         if ( mysqli_stmt_execute( $stmt ) ) {
-                                            mysqli_stmt_bind_result( $stmt, $venue_id );
+                                            mysqli_stmt_bind_result( $stmt, $customer_id );
                                             if ( !mysqli_stmt_fetch( $stmt ) ) {
-                                                print "<div class='stmt_failed'>Venue Query Execution Failed</div>";
+                                                print "<div class='stmt_failed'>Customer Query Execution Failed</div>";
                                             }
                                         }
                                     }
                                 }
-                                else { echo "<div class='stmt_failed'>Venue Insert Execution Failed</div>"; }
+                                else { echo "<div class='stmt_failed'>Customer Insert Execution Failed</div>"; }
                             }
-                            else { echo "<div class='stmt-failed'>Venue Prepared Statement Passed</div>"; }
+                            else { echo "<div class='stmt-failed'>Customer Prepared Statement Failed</div>"; }
                         }
                         else { echo "<div class='stmt-failed'>Address Query Execution Failed</div>"; }
                     }
@@ -123,7 +108,7 @@ $preparedVenueQuery = "
 
             </br>
             </br>
-            <a id="details-link" href="../view/venue-details.php?venue_id=<?php echo $venue_id; ?>">View your new venues detailed view</a>
+            <a id="details-link" href="../view/customer-details.php?customer_id=<?php echo $customer_id; ?>">View your new customers detailed view</a>
             </div>
             </div>
         </div>

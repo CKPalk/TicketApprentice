@@ -12,17 +12,20 @@ if ( !$connection ) header( 'Location: ../support/connection-error.html' );
 <html>
 <head>
     <title>Manager Home</title>
-    <link rel="stylesheet" type="text/css" href="../support/global.css?v=<?=time();?>">
     <link rel="stylesheet" type="text/css" href="../support/manager.css?v=<?=time();?>">
+    <link rel="stylesheet" type="text/css" href="../support/global.css?v=<?=time();?>">
+    <META HTTP-EQUIV="refresh" CONTENT="15">
 </head>
-<body><!--
-    <div id="menu_container">
-        <a href="_blank">link1</a>
-        <a href="_blank">link2</a>
-        <a href="_blank">link3</a>
-        <a href="_blank">link4</a>
+<body>
+<!-- HEADER BAR 8 lines-->
+    <div id="header-bar" class="manager-background">
+        <div id="header-container">
+            <a id="customer-home-header" href="https://ix.cs.uoregon.edu/~cpalk/TicketApprentice/customer/">Customer Home</a>
+            <a id="manager-home-header" href="https://ix.cs.uoregon.edu/~cpalk/TicketApprentice/manager/">Manager Home</a>
+        </div>
     </div>
- --><div id="body_container">
+<!-- END HEADER -->
+    <div id="body_container">
     <div id="middle_container">
         <div class="module">
             <div class="module-title">Add New Content</div>
@@ -30,7 +33,7 @@ if ( !$connection ) header( 'Location: ../support/connection-error.html' );
                 <a href="add/new-event-form.php">Add Event</a>
                 <a href="add/new-customer-form.php">Add Customer</a>
                 <a href="add/new-venue-form.php">Add Venue</a>
-                <a href="add/new-performer-form.php">Add Performer</a>
+                <a href="add/new-performer-form.php">Add Performer/Group</a>
             </div>
         </div>
         <div class="module">
@@ -43,7 +46,7 @@ if ( !$connection ) header( 'Location: ../support/connection-error.html' );
                     mysqli_stmt_bind_result( $stmt, $event_id, $event_name );
 
                     while ( mysqli_stmt_fetch( $stmt ) ) {
-                        echo "<li>" . $event_id . ": " . $event_name . "</li>";
+                        echo "<a class='list-link' href='view/event-details.php?event_id=" . $event_id . "'>" . $event_name . "<img src='../support/images/info.png' style='float:right;height:20px;width:20px;padding:4px;'></a>";
                     }
 
                     mysqli_stmt_close( $stmt );
@@ -64,7 +67,7 @@ if ( !$connection ) header( 'Location: ../support/connection-error.html' );
                     mysqli_stmt_bind_result( $stmt, $venue_id, $venue_name );
 
                     while ( mysqli_stmt_fetch( $stmt ) ) {
-                        echo "<a class='list-link' href='view/venue-details.php?venue_id=" . $venue_id . "'>" . $venue_name . "</a>";
+                        echo "<a class='list-link' href='view/venue-details.php?venue_id=" . $venue_id . "'>" . $venue_name . "<img src='../support/images/info.png' style='float:right;height:20px;width:20px;padding:4px;'></a>";
                     }
 
                     mysqli_stmt_close( $stmt );
@@ -79,7 +82,11 @@ if ( !$connection ) header( 'Location: ../support/connection-error.html' );
         <div class="module">
             <div class="module-title">Customer Search</div>
             <div class="module-body">
-                
+                <form action="search/customer-search.php" method="get">
+                    Customer Name [ Fuzzy Search ]:
+                    <input type="text" name="customer-name-search" placeholder='"Cameron" ( All customers named Cameron )'><br>
+                    <input type="submit" value="Search">
+                </form>
             </div>
         </div>
 

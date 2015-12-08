@@ -31,18 +31,8 @@ body {
 
 }
 
-#middle_container {
-    width: 1000px;
-    margin: 0 auto;
-    padding-top: 100px;
-    padding-bottom: 100px;
-}
 
 #all-events_module {
     background-color:green;
-}
-
-.stmt-success {
-    background-color: blue;
 }
 
