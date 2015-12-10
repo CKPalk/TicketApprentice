@@ -1,0 +1,38 @@
+body {
+    background-color: #BCC4C4;
+    padding: 0;
+}
+
+#menu_container {
+    position: fixed;
+    top:0;
+    left: 0;
+    right: 0;
+
+    height: 50px;
+    background-color: #2C3E50;
+
+    text-align: center;
+    line-height: 50px;
+}
+
+#menu_container a {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#body_container {
+
+    height: 100%;
+    background-color: #ECF0F1;
+
+    margin: 0 auto;
+
+
+}
+
+
+#all-events_module {
+    background-color:green;
+}
+
