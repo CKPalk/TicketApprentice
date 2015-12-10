@@ -11,7 +11,7 @@ if ( !$connection ) header( 'Location: ~/public_html/TicketApprentice/support/co
 
 <html>
 <head>
-    <title>TA: New Performer</title>
+    <title>TA: New Event</title>
     <link rel="stylesheet" type="text/css" href="../../support/global.css">
     <link rel="stylesheet" type="text/css" href="../../support/manager.css">
 </head>
@@ -51,9 +51,20 @@ if ( !$connection ) header( 'Location: ~/public_html/TicketApprentice/support/co
                             mysqli_stmt_close( $stmt );
                         } ?>
                     </select><br>
+
+                    Number of Rows to Sell Tickets for:
+                    <input type="number" name="row_count" style="width: 100px;" min="0" placeholder="100"><br>
+                    <div class="grader-note">Using linearly increasing seat pricing so you don't have to edit every rows price.</div>
+                    Front Row Ticket Price $
+                    <input type="number" name="front_row_ticket_price" style="width: 100px;" min="0" placeholder="300"><br>
+                    Last Row Ticket Price $
+                    <input type="number" name="last_row_ticket_price" style="width: 100px;" min="0" placeholder="20"><br>
+                    
+
+
                     Performer: <span style="font-size:16px; line-height:20px; margin:2px; color:#7f8c8d; float:right; padding-top:4px;">Add more from the Manager Menu</span>
                     <select name="performer_id" form="new-event">
-                        <option value="" selected>Optional</option>
+                        <option value="" selected>Required</option>
                         <?php $preparedPerformerQuery = "SELECT performer_id, first_name, last_name FROM Performers;";
                         if ( $stmt = mysqli_prepare( $connection, $preparedPerformerQuery ) ) {
                             if ( mysqli_stmt_execute( $stmt ) ) {

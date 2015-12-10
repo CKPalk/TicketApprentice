@@ -216,3 +216,13 @@ input[type="submit"] {
     color: #FFF;
 }
 
+.grader-note {
+    text-align: center;
+    border: 1px solid #e67e22;
+    font-size: 16px;
+    padding: 5px;
+    margin: 8px;
+    color: #333;
+}
+
+

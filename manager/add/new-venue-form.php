@@ -32,29 +32,15 @@
 
                     Address:
                     <input type="text" name="address_line_1" placeholder="1776 E 13th Ave">
-                    <input type="text" name="address_line_2" placeholder="optional">
-
-                    <br>
-
+                    <input type="text" name="address_line_2" placeholder="optional"> <br> 
                     City:
-                    <input type="text" name="city" placeholder="Eugene">
-
-                    <br>
-
+                    <input type="text" name="city" placeholder="Eugene"> <br> 
                     State:
-                    <input type="text" name="state" placeholder="Oregon">
-
-                    <br>
-
+                    <input type="text" name="state" placeholder="Oregon"> <br> 
                     Zipcode:
-                    <input type="number" name="zipcode" placeholder="97403">
-
-                    <br>
-
+                    <input type="number" name="zipcode" placeholder="97403"> <br> 
                     Country:
-                    <input type="text" name="country" placeholder="USA">
-
-                    <br>
+                    <input type="text" name="country" placeholder="USA"> <br>
 
                     <input type="submit">
                 </form>

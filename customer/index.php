@@ -66,6 +66,24 @@ if ( !$connection ) header( 'Location: ../support/connection-error.html' );
                 </form>
             </div>
         </div>
+        <div class="module">
+            <div class="module-title">Events Coming Up</div>
+            <div class="module-body" style="text-align: center">
+                <?php $preparedEventSortedQuery = "SELECT event_id, event_name, event_start_date FROM Events ORDER BY (event_start_date) LIMIT 10;";
+                if ( $stmt = mysqli_prepare( $connection, $preparedEventSortedQuery ) ) { 
+                    if ( mysqli_stmt_execute( $stmt ) ) { 
+                        mysqli_stmt_bind_result( $stmt, $event_id, $event_name, $event_start_date ); 
+                        while ( mysqli_stmt_fetch( $stmt ) ) { 
+                            echo "<a class='list-link' href='view/event-details.php?event_id=" . $event_id . "'>" . 
+                                $event_name . 
+                                "<span style='float:right; font-size:14px;'>" . $event_start_date . "</span>" .
+                            "</a>";
+                        } 
+                    } else { print "Event sorted query execution failed."; }
+                    mysqli_stmt_close( $stmt );
+                } else { print "Event sorted query prepared statement failed."; } ?>
+            </div>
+        </div>
     </div>
     </div>
 </body>

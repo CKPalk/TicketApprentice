@@ -37,10 +37,10 @@ if ( !$connection ) header( 'Location: ../support/connection-error.html' );
             </div>
         </div>
         <div class="module">
-            <div class="module-title">All Events</div>
+            <div class="module-title">Some Events</div>
             <div class="module-body">
             <?php
-                $allEventsQuery = "SELECT event_id, event_name FROM Events";
+                $allEventsQuery = "SELECT event_id, event_name FROM Events LIMIT 5";
                 if ( $stmt = mysqli_prepare( $connection, $allEventsQuery ) ) {
                     mysqli_stmt_execute( $stmt );
                     mysqli_stmt_bind_result( $stmt, $event_id, $event_name );
@@ -58,10 +58,10 @@ if ( !$connection ) header( 'Location: ../support/connection-error.html' );
             </div>
         </div>
         <div class="module">
-            <div class="module-title">All Venues</div>
+            <div class="module-title">Some Venues</div>
             <div class="module-body">
             <?php
-                $allVenuesQuery = "SELECT venue_id, venue_name FROM Venues";
+                $allVenuesQuery = "SELECT venue_id, venue_name FROM Venues LIMIT 5";
                 if ( $stmt = mysqli_prepare( $connection, $allVenuesQuery ) ) {
                     mysqli_stmt_execute( $stmt );
                     mysqli_stmt_bind_result( $stmt, $venue_id, $venue_name );
